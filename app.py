@@ -77,7 +77,7 @@ colunas = st.sidebar.multiselect(
 )
 dados_filtrados = dados[colunas]
 
-# Filtros específicos para o dataset de jogos
+
 if dataset_opcao == "Jogos":
     nome_jogo = st.sidebar.selectbox(
         "Selecione um Jogo",
@@ -148,7 +148,7 @@ def send_email(subject, body, to_email, attachment):
     msg['To'] = to_email
     msg['Subject'] = subject
 
-    # Adicionar o corpo do e-mail
+    
     msg.attach(MIMEText(body, 'plain'))
 
     # Adicionar anexo
@@ -161,7 +161,7 @@ def send_email(subject, body, to_email, attachment):
     )
     msg.attach(part)
 
-    # Enviar o e-mail
+    # Parte do código que envia o e-mail
     with smtplib.SMTP(smtp_server, smtp_port) as server:
         server.starttls()
         server.login(from_email, from_password)
@@ -183,11 +183,10 @@ if st.button("Enviar relatório por e-mail"):
     else:
         st.error("Por favor, insira um endereço de e-mail.")
 
-# Análise específica para o "ROBO"
+
 if dataset_opcao == "ROBO":
     st.subheader("Análise de Dados do Robo Corretor")
 
-    # Exemplo de análise do arquivo ROBO
     if 'Data' in dados.columns and 'Preço' in dados.columns:
         st.subheader("Análise de Preços ao Longo do Tempo")
         dados_filtrados['Data'] = pd.to_datetime(dados_filtrados['Data'], errors='coerce')
